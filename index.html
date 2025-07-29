@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed Ragab Saleh | CV</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: #004d7a; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    nav button { margin-left: 1rem; background: white; color: #004d7a; border: none; padding: 0.4rem 0.8rem; cursor: pointer; border-radius: 5px; }
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    section { background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h2 { color: #004d7a; }
+    .flex { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .skill-list li { margin-bottom: 0.5rem; }
+    .lang-toggle { float: right; font-size: 0.9rem; cursor: pointer; }
+    footer { text-align: center; padding: 1rem; background: #004d7a; color: white; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="name">Ahmed Ragab Saleh</h1>
+    <nav>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('ar')">العربية</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2 data-en="Professional Summary" data-ar="نبذة عني"></h2>
+      <p id="summary"></p>
+    </section>
+
+    <section>
+      <h2 data-en="Contact" data-ar="معلومات التواصل"></h2>
+      <ul>
+        <li><b>Email:</b> ahmedragab261097@gmail.com</li>
+        <li><b>Phone:</b> 0563519396</li>
+        <li><b>Location:</b> Riyadh, Saudi Arabia</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="Skills" data-ar="المهارات"></h2>
+      <ul class="skill-list" id="skills"></ul>
+    </section>
+
+    <section>
+      <h2 data-en="Experience" data-ar="الخبرات"></h2>
+      <ul id="experience"></ul>
+    </section>
+
+    <section>
+      <h2 data-en="CV Download" data-ar="تحميل السيرة الذاتية"></h2>
+      <a href="cv.pdf" download>📄 Download My CV (PDF)</a>
+    </section>
+
+    <section>
+      <h2 data-en="Social Links" data-ar="روابط التواصل"></h2>
+      <ul>
+        <li><a href="#">LinkedIn (أضف الرابط لاحقاً)</a></li>
+        <li><a href="#">GitHub (اختياري)</a></li>
+        <li><a href="#">أخرى...</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Ahmed Ragab Saleh
+  </footer>
+
+  <script>
+    const content = {
+      en: {
+        summary: `Certified Accountant with experience in corporate accounting environments. Skilled in tax strategies, financial reporting, and modern accounting tools.`,
+        skills: [
+          "Financial Reporting", "Studying CMA", "Tax Return Filing", "Project Budgeting",
+          "Payroll", "Microsoft Office", "ERP Software", "Cash Flow Analysis",
+          "Account Reconciliation", "Accounts Payable/Receivable"
+        ],
+        experience: [
+          "Accountant – AL Rwasi Trading Company",
+          "Accountant – AL Waha Company",
+          "Accountant – Nebras Company",
+          "Accountant – Wabia Trading Company"
+        ]
+      },
+      ar: {
+        summary: `محاسب معتمد بخبرة في بيئات المحاسبة للشركات. ماهر في الاستراتيجيات الضريبية، وإعداد التقارير المالية، والأدوات المحاسبية الحديثة.`,
+        skills: [
+          "إعداد التقارير المالية", "أدرس الآن CMA", "تقديم الإقرارات الضريبية", "إعداد ميزانية المشروع",
+          "الرواتب", "مايكروسوفت أوفيس", "برامج ERP", "تحليل التدفق النقدي",
+          "تسوية الحسابات", "الحسابات المستحقة / الدائنة"
+        ],
+        experience: [
+          "محاسب – شركة الرواسي للتجارة",
+          "محاسب – شركة الواحة",
+          "محاسب – شركة نبراس",
+          "محاسب – شركة وابيا للتجارة"
+        ]
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById("summary").innerText = content[lang].summary;
+      const skills = document.getElementById("skills");
+      const exp = document.getElementById("experience");
+
+      skills.innerHTML = content[lang].skills.map(s => `<li>${s}</li>`).join("");
+      exp.innerHTML = content[lang].experience.map(e => `<li>${e}</li>`).join("");
+
+      document.querySelectorAll("h2").forEach(h => {
+        h.innerText = h.dataset[lang];
+      });
+    }
+
+    setLanguage("en");
+  </script>
+</body>
+</html>
